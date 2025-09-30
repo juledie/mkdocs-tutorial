@@ -1,0 +1,36 @@
+# Name des automatisierten Workflows
+name: deploy-documentation
+ 
+# Trigger: Wann soll dieser Workflow starten?
+# Hier: Bei jedem Push auf den 'main'-Branch
+on:
+  push:
+    branches:
+      - main
+ 
+# Berechtigungen für den Workflow-Job
+permissions:
+  contents: write
+ 
+# Jobs, die ausgeführt werden sollen
+jobs:
+  deploy:
+    # Das Betriebssystem, auf dem der Job läuft (ein virtueller Computer)
+    runs-on: ubuntu-latest
+    # Die einzelnen Schritte des Jobs
+    steps:
+      # 1. Schritt: Code aus deinem Repository herunterladen
+      - uses: actions/checkout@v4
+ 
+      # 2. Schritt: Python-Umgebung einrichten
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+ 
+      # 3. Schritt: Pip (Python-Paketmanager) verwenden, um MkDocs zu installieren
+      - name: Install MkDocs
+        run: pip install mkdocs-material
+      # 4. Schritt: Die Webseite bauen und auf GitHub Pages veröffentlichen
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force
