@@ -1,0 +1,31 @@
+site_name: Pet Buddy
+theme:
+  name: material
+  language: de
+
+
+theme:
+  name: material
+  language: de
+  # optional: Farbschema
+  palette:
+    primary: indigo
+    accent: teal
+
+nav:
+  - Home: index.md
+  - Einführung: intro.md
+  - Über: about.md
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - footnotes
+  - pymdownx.superfences
+  - attr_list
+
+extra:
+  version: "0.1"
+  logo: images/logo.png
+
